@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'ui/products/product_detail_screen.dart';
+import 'ui/products/ProductsManager.dart';
 
 void main() {
   runApp(const MyApp());
@@ -7,15 +9,14 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+      home: SafeArea(
+        child: ProductDetailScreen(
+          ProductsManager().items[0],
+        ),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
@@ -38,6 +39,12 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _decrementCounter() {
+    setState(() {
+      _counter--;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,6 +62,12 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
+            TextButton(
+              onPressed: () {
+                _decrementCounter();
+              },
+              child: Text('Hào Ngầu $_counter lần!'),
+            )
           ],
         ),
       ),
