@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:myshop/ui/products/edit_product_screen.dart';
 import 'package:provider/provider.dart';
 import 'ui/screens.dart';
 
@@ -54,7 +53,7 @@ class MyApp extends StatelessWidget {
                   builder: ((context, snapshot) {
                     return snapshot.connectionState == ConnectionState.waiting
                         ? const SplashScreen()
-                        : AuthScreen();
+                        : const AuthScreen();
                   }),
                 ),
           routes: {

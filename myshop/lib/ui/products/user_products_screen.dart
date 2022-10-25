@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter/src/foundation/key.dart';
@@ -18,6 +20,7 @@ class UserProductsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final productsManager = ProductsManager();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Your Products'),
@@ -34,16 +37,17 @@ class UserProductsScreen extends StatelessWidget {
               child: CircularProgressIndicator(),
             );
           }
+          //print(productsManager.items);
           return RefreshIndicator(
             onRefresh: () => _refreshProducts(context),
-            child: buildUserProductListView(),
+            child: buildUserProductListView(productsManager),
           );
         },
       ),
     );
   }
 
-  Widget buildUserProductListView() {
+  Widget buildUserProductListView(ProductsManager productsManager) {
     return Consumer<ProductsManager>(
       builder: (ctx, productsManager, child) {
         return ListView.builder(
